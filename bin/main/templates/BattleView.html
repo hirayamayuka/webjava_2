@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div style = "float : left">
+	<form action = "#" th:action="@{/MonsterBattle3}" th:object="${CharacterForm}" method="POST">
+	<br>
+	自分のポケモン
+	<br>
+	<select name="num">
+		<option value="Fushi" th:selected = "${SelectPoke} == 1">フシギダネ</option>
+		<option value="Hito"  th:selected = "${SelectPoke} == 2">ヒトカゲ</option>
+		<option value="Zeni"  th:selected = "${SelectPoke} == 3">ゼニガメ</option>
+	</select>
+	<br>
+	<input type = "submit" value = "ステータスを見る"/>
+	</form>
+	<br>
+	<br>
+	名前      ：[[${SelectType.getName()}]]<br>
+	HP        ：[[${SelectType.getHp()}]]<br>
+	こうげき  ：[[${SelectType.getAttack()}]]<br>
+	すばやさ  ：[[${SelectType.getSpeed()}]]<br>
+	有利タイプ：[[${SelectType.getYuuriType()}]]<br>
+	不利タイプ：[[${SelectType.getFuriType()}]]<br>
+	<br>
+	<br>
+	[[${session['message']}]]<br>
+	<th:block th:each=" Log : ${session['Log']}">
+		<th:block th:text="${Log}"></th:block>
+	<br>
+	</div>
+	<div>
+	<br>
+	<br>
+	<br>
+	<form action = "#" th:action = "@{/Battle}"method="POST">
+	<input type = "submit" value = "VS"/>
+	</form>
+	</div>
+
+
+
+
+</body>
+</html>
